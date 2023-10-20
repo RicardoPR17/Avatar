@@ -1,0 +1,8 @@
+const mongoose = requere("mongoose");
+mongoose.set("strictQuery", false);
+const mongoDB = "mongodb+srv://adminMongo:<password>@cluster0.aqn2xym.mongodb.net/?retryWrites=true&w=majority";
+
+main().catch((err) => console.log(err));
+async function main() {
+  await mongoose.connect(mongoDB);
+}

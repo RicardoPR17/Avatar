@@ -22,12 +22,26 @@ async function run() {
     // If the database and/or collection do not exist, the driver and Atlas
     // will create them automatically when you first write data.
     const dbName = "myDatabase";
-    const collectionName = "cryptos";
+    const collectionName = "crypto";
 
     // Create references to the database and collection in order to run
     // operations on them.
     const database = client.db(dbName);
     const collection = database.collection(collectionName);
+
+    const cryptoSchema = {
+        "title": "crypto",
+        "required": [
+            "name",
+            "value",
+            "amount"
+        ],
+        "properties": {
+            "name": { "bsonType": "string" },
+            "value": { "bsonType": "number" },
+            "amount": { "bsonType": "number" }
+        }
+    }
 
     /*
      *  *** INSERT DOCUMENTS ***
