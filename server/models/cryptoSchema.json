@@ -1,0 +1,10 @@
+{
+  "bsonType": "object",
+  "title": "Crypto Object Validation",
+  "required": ["name", "value", "amount"],
+  "properties": {
+    "name": { "bsonType": "string", "description": "'name' refers to the name of the cryptocurrency" },
+    "value": { "bsonType": "number", "description": "The value or price of the cryptocurrency" },
+    "amount": { "bsonType": "number", "description": "Amount of that cryptocurrency in the platform" }
+  }
+}

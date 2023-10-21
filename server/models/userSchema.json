@@ -1,0 +1,9 @@
+{
+  "bsonType": "object",
+  "title": "User Object Validation",
+  "required": ["name", "mail"],
+  "properties": {
+    "name": { "bsonType": "string", "description": "User fullname" },
+    "mail": { "bsonType": "string", "description": "User's email" }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "bsonType": "object",
+  "title": "Wallet Object Validation",
+  "required": ["user_id", "crypto", "amount"],
+  "properties": {
+    "user_id": { "bsonType": "string", "description": "The id of the user who owns the wallet" },
+    "crypto": { "bsonType": "string", "description": "The name of the particular crypto" },
+    "amount": { "bsonType": "number", "description": "The amount of that cryptocurrency that the user have" }
+  }
+}
