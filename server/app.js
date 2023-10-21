@@ -1,8 +1,8 @@
-const { MongoClient } = require("mongodb");
-const cryptoSchema = require("./models/cryptoSchema.json");
-const userSchema = require("./models/userSchema.json");
-const walletSchema = require("./models/userSchema.json");
-const coinSchema = require("./models/coinSchema.json");
+import { MongoClient } from "mongodb";
+import cryptoSchema from "./models/cryptoSchema.json";
+import userSchema from "./models/userSchema.json";
+import walletSchema from "./models/userSchema.json";
+import coinSchema from "./models/coinSchema.json";
 
 async function run() {
   // TODO:
