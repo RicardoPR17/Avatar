@@ -63,4 +63,4 @@ const getOneCrypto = async (req, res) => {
 
 module.exports = { getCryptoData, getOneCrypto };
 
-setInterval(uploadTop10Cryptocurrencies, 300000); // Get cryptocurrencies price every 5min = 3000000ms
+setInterval(uploadTop10Cryptocurrencies, 900000); // Get cryptocurrencies price every 15min = 9000000ms
