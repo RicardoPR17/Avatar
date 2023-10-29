@@ -54,6 +54,7 @@ const getOneCrypto = async (req, res) => {
       .project({ _id: 0, date: 1, "cryptocurrencies.$": 1 })
       .sort({ date: -1 })
       .toArray();
+    if (query.length === 0) throw "Crypto now found";
     res.json(query);
   } catch (err) {
     res.status(404).json({ message: "Cryptocurrency not found" });
