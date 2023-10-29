@@ -5,11 +5,13 @@ import './App.css'
 import Login from './components/Login/Login'
 import Menu from './components/Menu/Menu'
 import Profile from './components/Profile/Profile'
+import MainPage from './components/MainPage/MainPage'
 
 import {
     BrowserRouter as Router,
     Switch,
-    Route } from 'react-router-dom'
+    Route,
+    Link } from 'react-router-dom'
 
 const App = () => {
     return (
@@ -21,6 +23,7 @@ const App = () => {
                     </Route>
                     <Route path="/mainPage">
                         <Menu />
+                        <MainPage />
                     </Route>
                     <Route path="/profile">
                         <Menu />

@@ -75,7 +75,7 @@
   #button {
     z-index: 2;
     position: relative;
-    width: 100%;
+    width: 300px;
     border: none;
     background-color: #00288F;
     height: 30px;
