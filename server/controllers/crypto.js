@@ -61,6 +61,20 @@ const getOneCrypto = async (req, res) => {
   }
 };
 
-module.exports = { getCryptoData, getOneCrypto };
+const getLastCryptoData = async (req, res) => {
+  try {
+    const query = await cryptosDoc
+      .find({})
+      .project({ _id: 0, date: 1, cryptocurrencies: 1 })
+      .sort({ date: -1 })
+      .limit(1)
+      .toArray();
+    res.json(query);
+  } catch (err) {
+    res.status(500).json({ error: err });
+  }
+};
+
+module.exports = { getCryptoData, getOneCrypto, getLastCryptoData };
 
 setInterval(uploadTop10Cryptocurrencies, 900000); // Get cryptocurrencies price every 15min = 9000000ms
