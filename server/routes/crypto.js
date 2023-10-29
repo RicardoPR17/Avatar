@@ -5,7 +5,7 @@ const router = express.Router();
 // Ruta GET: /db/cryptos
 router.get("/db/cryptos", cryptos.getCryptoData);
 
-// Ruta POST: /db/cryptos
-router.post("/db/cryptos", cryptos.uploadTop10Cryptocurrencies);
+// Ruta GET: /db/cryptos/:name
+router.get('/db/cryptos/:name', cryptos.getOneCrypto);
 
 module.exports = { router };

@@ -31,3 +31,4 @@ nbdist/
 .vscode/*
 
 .DS_Store/
+server/subirDatos.js

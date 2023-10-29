@@ -14,7 +14,7 @@ const database = client.db("Avatar");
 
 const cryptosDoc = database.collection("Cryptos");
 
-const uploadTop10Cryptocurrencies = async (req, res) => {
+const uploadTop10Cryptocurrencies = async () => {
   try {
     const response = await axios.get("https://api.coingecko.com/api/v3/coins/markets", {
       params: {
@@ -26,41 +26,40 @@ const uploadTop10Cryptocurrencies = async (req, res) => {
       },
     });
 
-    const top10Criptomonedas = response.data;
+    const top10Criptocurrencies = response.data;
     const result = { date: new Date(Date.now()).toISOString(), cryptocurrencies: [] };
 
     // console.log("Top 10 Cryptocurrencies:");
-    top10Criptomonedas.forEach((cripto, index) => {
+    top10Criptocurrencies.forEach((cripto, index) => {
       // console.log(`${index + 1}. ${cripto.name} (${cripto.symbol}): $${cripto.current_price}`);
       result.cryptocurrencies.push({ name: cripto.name, value: cripto.current_price });
     });
     // console.log(result);
     await cryptosDoc.insertOne(result);
-    res.status(200).json(result);
   } catch (error) {
     console.error("Error getting the top 10 cryptocurrencies:", error.message);
   }
 };
 
 const getCryptoData = async (req, res) => {
-  const query = await cryptosDoc.find({}).toArray();
+  const query = await cryptosDoc.find({}).sort({ date: -1 }).toArray();
   res.json(query);
 };
 
 const getOneCrypto = async (req, res) => {
-  const cryptoName = req.body.name;
+  const cryptoName = req.params.name;
   try {
-    const query = await cryptosDoc.findOne({ "cryptocurrencies.name": cryptoName });
-    const result = {
-      date: query.date,
-      name: query.name,
-      value: query.value,
-    };
-    console.log(result);
-    res.status(200).json(result);
+    const query = await cryptosDoc
+      .find({ "cryptocurrencies.name": cryptoName })
+      .project({ _id: 0, date: 1, "cryptocurrencies.$": 1 })
+      .sort({ date: -1 })
+      .toArray();
+    res.json(query);
   } catch (err) {
     res.status(404).json({ message: "Cryptocurrency not found" });
   }
 };
 
-module.exports = { uploadTop10Cryptocurrencies, getCryptoData, getOneCrypto };
+module.exports = { getCryptoData, getOneCrypto };
+
+setInterval(uploadTop10Cryptocurrencies, 300000); // Get cryptocurrencies price every 5min = 3000000ms
